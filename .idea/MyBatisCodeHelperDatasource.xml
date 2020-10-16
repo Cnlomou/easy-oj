@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MyBatisCodeHelperDatasource">
+    <option name="projectProfile">
+      <ProjectProfile>
+        <option name="generateService" value="true" />
+        <option name="generateServiceInterface" value="true" />
+        <option name="javaMapperPackage" value="org.example.web.mapper" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/web/src/main/java" />
+        <option name="javaModelPackage" value="org.example.web.model" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/web/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="web" />
+        <option name="lombokAllArgConstructor" value="true" />
+        <option name="lombokDataAnnotation" value="true" />
+        <option name="lombokNoArgsConstructor" value="true" />
+        <option name="modelAddToString" value="true" />
+        <option name="moduleNameToPackageAndPathMap">
+          <map>
+            <entry key="web">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="org.example.web.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/web/src/main/java" />
+                  <option name="javaModelPacakge" value="org.example.web.model" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/web/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="org.example.web.service" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/web/src/main/java" />
+                  <option name="javaServicePackage" value="org.example.web.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/web/src/main/java" />
+                  <option name="xmlPackage" value="mappers" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/web/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="tableGenerateConfigs">
+          <map>
+            <entry key="jxoj:oj_judge_result">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="OjJudgeResult" />
+                  <option name="moduleName" value="web" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="jxoj:oj_languages">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="OjLanguages" />
+                  <option name="moduleName" value="web" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="jxoj:oj_problem_checkpoints">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="OjProblemCheckpoints" />
+                  <option name="moduleName" value="web" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="jxoj:oj_problems">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="OjProblems" />
+                  <option name="moduleName" value="web" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="jxoj:oj_submissions">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="OjSubmissions" />
+                  <option name="moduleName" value="web" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="useCommonMapper" value="true" />
+        <option name="xmlMapperPackage" value="mappers" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/web/src/main/resources" />
+      </ProjectProfile>
+    </option>
+  </component>
+</project>

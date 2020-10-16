@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.web.mapper.OjJudgeResultMapper">
+  <resultMap id="BaseResultMap" type="org.example.web.model.OjJudgeResult">
+    <!--@mbg.generated generated on Sun Jul 05 17:26:45 CST 2020.-->
+    <!--@Table oj_judge_result-->
+    <id column="judge_result_id" jdbcType="INTEGER" property="judgeResultId" />
+    <result column="judge_result_name" jdbcType="VARCHAR" property="judgeResultName" />
+    <result column="judge_result_description" jdbcType="VARCHAR" property="judgeResultDescription" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Sun Jul 05 17:26:45 CST 2020.-->
+    judge_result_id, judge_result_name, judge_result_description
+  </sql>
+</mapper>

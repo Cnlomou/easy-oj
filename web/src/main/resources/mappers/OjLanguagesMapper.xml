@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.web.mapper.OjLanguagesMapper">
+  <resultMap id="BaseResultMap" type="org.example.web.model.OjLanguages">
+    <!--@mbg.generated generated on Sun Jul 05 17:26:45 CST 2020.-->
+    <!--@Table oj_languages-->
+    <id column="language_id" jdbcType="INTEGER" property="languageId" />
+    <result column="language_des" jdbcType="VARCHAR" property="languageDes" />
+    <result column="language_name" jdbcType="VARCHAR" property="languageName" />
+    <result column="language_compile_command" jdbcType="VARCHAR" property="languageCompileCommand" />
+    <result column="language_run_command" jdbcType="VARCHAR" property="languageRunCommand" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Sun Jul 05 17:26:45 CST 2020.-->
+    language_id, language_des, language_name, language_compile_command, language_run_command
+  </sql>
+</mapper>

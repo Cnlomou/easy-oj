@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/jxoj?serverTimezone=UTC&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+  rabbitmq:
+    host: 192.168.23.161
+    port: 5672
+    username: admin
+    password: guest
+    virtual-host: my_vhost
+      #  消息发送到交换机确认机制,是否确认回调
+    publisher-returns: true
+  aop:
+    proxy-target-class: true
+  thymeleaf:
+    cache: false
+mybatis:
+  configuration:
+#    使用生成的主键
+    use-generated-keys: true

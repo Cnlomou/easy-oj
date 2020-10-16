@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>代码评审系统</title>
+    <link rel="stylesheet" href="./css/main.css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="./layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+</head>
+
+<body>
+    <header>
+        <h1>代码评审系统</h1>
+    </header>
+
+    <main id="index">
+        <article id="info">
+            <div id="title">
+                <h3 th:text="${title}">1.两数之和</h3>
+            </div>
+            <hr>
+            <p th:text="${des}">
+                输入： <br>
+                    输出：两个自然数x和y的和
+            </p>
+
+            <b class="example-title">输入</b>
+            <div class="example">
+                <div>
+                    <p th:text="${inp}"></p>
+                </div>
+            </div>
+            <b class="example-title">输出</b>
+            <div class="example">
+                <div>
+                    <p th:text="${outp}"></p>
+                </div>
+            </div>
+            <b class="example-title">示例</b>
+            <div class="example">
+                <div>
+                    <b>[案例输入]</b>
+                    <p th:text="${inps}">
+                        123 500
+                    </p>
+                </div>
+
+                <div>
+                    <b>[案例输出]</b>
+                    <p th:text="${outps}">
+                        623
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <article id="code">
+            <pre id="code-edit" class="layui-code">//请在这里输入代码</pre>
+            <div id="controller" hidden>
+                <div hidden id="controller-true" class="controller-run-msg"><img src="./img/true.png" th:src="@{/img/true.png}">成功运行</div>
+                <div hidden id="controller-false" class="controller-run-msg"><img src="./img/false.png" th:src="@{/img/false.png}">运行失败</div>
+                <div class="controller-run-result">
+                    <p>运行结果</p>
+                    <p class="controller-run-result-text" id="res"></p>
+                </div>
+                <div hidden class="controller-run-result out">
+                    <p>输出</p>
+                    <p class="controller-run-result-text" id="mout"></p>
+                </div>
+                <div hidden class="controller-run-result out">
+                    <p>案例输出</p>
+                    <p class="controller-run-result-text" id="mouts"></p>
+                </div>
+                <div hidden id="controller-run-error" class="err">
+                    <p>错误日志</p>
+                    <p id="controller-run-error-text"></p>
+                </div>
+            </div>
+            <div id="code-button">
+                <select id="sel">
+                    <option value="C">C</option>
+                    <option value="C">C++</option>
+<!--                    <option value="Java">Java</option>-->
+                </select>
+<!--                <button onclick="openController()">控制台</button>-->
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div>
+            <button>上一题</button>
+            <button>下一题</button>
+        </div>
+        <div>
+            <button hidden>测试</button>
+            <button onclick="putCode()">提交</button>
+        </div>
+    </footer>
+</body>
+
+<script src="./layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script src="./js/jquer.js" th:src="@{/js/jquer.js}"></script>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $('#info,#code').height($(window).height() - 50 - 46 - 40 - 2);
+        $('#code>pre').height($(window).height() - 50 - 46 - 40 - 2 - 50);
+        $('#controller').width($('#code').width() + 'px');
+        $('#controller').css('top', 66 + $('#code').height() - $('#controller').height() - 50 + 'px');
+    });
+    layui.use('code', function () { //加载code模块
+        layui.code({
+            title: '代码输入区',
+            about: false,
+            height: $(window).height() - 50 - 46 - 40 - 2 - 90 + 'px',
+            encode:true
+        }); //引用code方法
+        $("#code>pre>ol").attr('contenteditable', 'true');
+    });
+    function setValue(res) {
+        $('#res').text(res.data.msg==null?'NULL':res.data.msg);
+        $('#mout').text(res.data.out==null?'NULL':res.data.out);
+        $('#mouts').text(res.data.outSam==null?'NULL':res.data.outSam);
+        $('#controller-run-error-text').text(res.data.out==null?'NULL':res.data.out);
+    }
+    function getResultAndShow(subId) {
+        if (subId===0)return;
+        layui.use('layer',function () {
+            var layer=layui.layer
+            new Promise(function (resolve,reject) {
+                $.post('/res/'+subId,{},function (data) {
+                    if(data.flag===true)
+                        resolve(data)
+                    else
+                        reject(data.message)
+                },'json').then(function (res) {
+                    console.log(res);
+                    setValue(res);
+                    if(res.data.res==="PS"){
+                        openController(0);
+                        $('#controller-true').show();
+                    }else if(res.data.res==="AC"){
+                        openController(2);
+                        $('#controller-false').show();
+                    }else if(res.data.res==="TLE"){
+                        openController(0);
+                        $('#controller-false').show();
+                    }else if(res.data.res==="MLE"){
+                        openController(0);
+                        $('#controller-false').show();
+                    }else{
+                        openController(1);
+                        $('#controller-false').show();
+                    }
+
+                }).catch(function (msg) {
+                    console.log(msg);
+                    layer.msg(msg, {icon: 5,time:2000});
+                })
+            })
+        })
+
+
+    }
+    function putCode() {
+        var code = $('#code-edit>ol').html();
+        var problemId=[[${proId}]];
+        code = code.replace(/<li>/g, '')
+        code = code.replace(/&amp;/g, "&");
+        code = code.replace(/&lt;/g, '<');
+        code = code.replace(/&gt;/g, '>');
+        code = code.replace(/&nbsp;/g, " ");
+        code = code.replace(/&#39;/g, "\'");
+        code = code.replace(/&quot;/g, "\"");
+        code = code.replace(/<\/li>/g, '\n');
+        code = code.replace(/<br>/g, '');
+        var sel=$('#sel').val();
+        console.log(problemId);
+        console.log(sel);
+        openController(-1);//关闭结果提示
+        layui.use('layer',function () {
+            var layer=layui.layer
+            new Promise(function (resolve, reject) {
+                $.post("/ques/" + problemId, {'code': code, 'type': sel}, function (data) {
+                    console.log(data);
+                    if (data.flag === true) {
+                        resolve(data.data);
+                    } else {
+                        reject(data.message)
+                    }
+                }, 'json')
+            }).then(function (subId) {
+                layer.msg('提交成功', {icon: 6, time: 500})
+                index = layer.load(1, {time: 10 * 1000});
+                //请求响应
+
+                    setTimeout(function () {
+                        layer.close(index);
+                        getResultAndShow(subId);
+                    }, 3000)
+
+            })
+            .catch(function (msg) {
+                console.log(msg);
+                layer.msg(msg, {icon: 5,time:2000});
+            })
+
+        })
+    }
+    var mark=0;
+    function openController(status) {
+        // status==0
+        // 0  pass             执行结果
+        // 1  compile error    执行结果  错误日志
+        // 2  noPass           执行结果  输出 案例输出
+       if(status<0){
+           if(mark!==0){
+               mark=0;
+               $('.err').hide();
+               $('.out').hide();
+               $(".controller-run-msg").hide();
+               $('#controller').hide();
+           }
+        } else {
+            switch (status) {
+                case 1:
+                    $('.err').show();break;
+                case 2:
+                    $('.out').show();break;
+            }
+            $('#controller').show();
+            mark=1;
+        }
+    }
+</script>
+
+</html>

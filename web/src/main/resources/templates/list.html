@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>代码评审系统</title>
+    <link rel="stylesheet" href="./css/main.css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="./layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+</head>
+
+<body>
+    <header>
+        <div>
+            <h3>代码评审系统</h3>
+        </div>
+    </header>
+
+    <main id="list">
+        <article id="list-title">
+            <div class="pre-width">
+                <h3>题库列表</h3>
+                <div id="content-list">
+                    <div th:each="item: ${page.getList()}">
+                        <div>
+                            <p class="content-list-id" th:text="${'#'+item.problemId}">#1</p>
+                            <p class="content-list-title" th:text="${item.problemName}">两数之和</p>
+                        </div>
+                        <div>
+                            <p class="content-list-count">100人已完成</p>
+                            <a class="content-list-start" href="./" th:href="@{'/edit/'+${item.problemId}}">开始解题</a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <p class="content-list-id">#2</p>
+                            <p class="content-list-title">两数之和</p>
+                        </div>
+                        <div>
+                            <p class="content-list-count">100人已完成</p>
+                            <a class="content-list-start" href="./">开始解题</a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <p class="content-list-id">#3</p>
+                            <p class="content-list-title">两数之和</p>
+                        </div>
+                        <div>
+                            <p class="content-list-count">100人已完成</p>
+                            <a class="content-list-start" href="./">开始解题</a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <p class="content-list-id">#4</p>
+                            <p class="content-list-title">两数之和</p>
+                        </div>
+                        <div>
+                            <p class="content-list-count">100人已完成</p>
+                            <a class="content-list-start" href="./">开始解题</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        
+    </footer>
+</body>
+
+<script src="./layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script src="./js/jquer.js" th:src="@{/js/jquer.js}"></script>
+
+
+</html>

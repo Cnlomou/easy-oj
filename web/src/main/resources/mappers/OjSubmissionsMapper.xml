@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.web.mapper.OjSubmissionsMapper">
+  <resultMap id="BaseResultMap" type="org.example.web.model.OjSubmissions">
+    <!--@mbg.generated generated on Sun Jul 05 17:26:45 CST 2020.-->
+    <!--@Table oj_submissions-->
+    <id column="submission_id" jdbcType="INTEGER" property="submissionId" />
+    <result column="problem_id" jdbcType="INTEGER" property="problemId" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="language_id" jdbcType="INTEGER" property="languageId" />
+    <result column="submission_commit_time" jdbcType="TIMESTAMP" property="submissionCommitTime" />
+    <result column="submission_exe_time" jdbcType="TIMESTAMP" property="submissionExeTime" />
+    <result column="submission_use_time" jdbcType="INTEGER" property="submissionUseTime" />
+    <result column="submission_use_memory" jdbcType="INTEGER" property="submissionUseMemory" />
+    <result column="submission_result" jdbcType="VARCHAR" property="submissionResult" />
+    <result column="submission_score" jdbcType="INTEGER" property="submissionScore" />
+    <result column="submission_log" jdbcType="LONGVARCHAR" property="submissionLog" />
+    <result column="submission_code" jdbcType="LONGVARCHAR" property="submissionCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Sun Jul 05 17:26:45 CST 2020.-->
+    submission_id, problem_id, `uid`, language_id, submission_commit_time, submission_exe_time, 
+    submission_use_time, submission_use_memory, submission_result, submission_score, 
+    submission_log, submission_code
+  </sql>
+</mapper>

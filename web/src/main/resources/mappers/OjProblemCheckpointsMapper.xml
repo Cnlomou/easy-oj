@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.web.mapper.OjProblemCheckpointsMapper">
+  <resultMap id="BaseResultMap" type="org.example.web.model.OjProblemCheckpoints">
+    <!--@mbg.generated generated on Sun Jul 05 17:26:45 CST 2020.-->
+    <!--@Table oj_problem_checkpoints-->
+    <id column="problem_checkpoint_id" jdbcType="INTEGER" property="problemCheckpointId" />
+    <result column="problem_id" jdbcType="INTEGER" property="problemId" />
+    <result column="problem_checkpoint_match" jdbcType="CHAR" property="problemCheckpointMatch" />
+    <result column="problem_checkpoint_input" jdbcType="LONGVARCHAR" property="problemCheckpointInput" />
+    <result column="problem_checkpoint_output" jdbcType="LONGVARCHAR" property="problemCheckpointOutput" />
+    <result column="problem_checkpoint_score" jdbcType="INTEGER" property="problemCheckpointScore" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Sun Jul 05 17:26:45 CST 2020.-->
+    problem_checkpoint_id, problem_id, problem_checkpoint_match, problem_checkpoint_input, 
+    problem_checkpoint_output, problem_checkpoint_score
+  </sql>
+</mapper>
